@@ -13,3 +13,13 @@ test('test runs with a fixed version v0.10.0', () => {
   }
   console.log(cp.execSync(`node ${ip}`, options).toString())
 })
+
+test('test runs with a default version', () => {
+    process.env['RUNNER_TEMP'] = os.tmpdir()
+    process.env['INPUT_VERSION'] = 'default'
+    const ip = path.join(__dirname, '..', 'lib', 'main.js')
+    const options: cp.ExecSyncOptions = {
+      env: process.env
+    }
+    console.log(cp.execSync(`node ${ip}`, options).toString())
+  })
