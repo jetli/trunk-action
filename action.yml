@@ -2,8 +2,7 @@ name: 'trunk-action'
 description: 'Install Trunk by downloading the executable (much faster than cargo install trunk, seconds vs minutes).'
 author: 'jetli'
 inputs:
-  version
-    required: false
+  version:
     description: 'Optional version of trunk to install (eg. "v0.10.0", "latest")'
     default: 'latest'
 runs:
