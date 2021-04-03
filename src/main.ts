@@ -60,12 +60,12 @@ async function run(): Promise<void> {
     core.info(`Downloading trunk from ${url} ...`)
     const downloadArchive = await tc.downloadTool(url)
     core.info(`Extracting trunk to ${tempFolder} ...`)
-    const extractedBin = await extractFn(downloadArchive, tempFolder)
+    const extractedFolder = await tc.extractTar(downloadArchive, tempFolder)
     const execFolder = path.join(os.homedir(), '.cargo', 'bin')
     await io.mkdirP(execFolder)
     const exec = `trunk${ext}`
     const execPath = path.join(execFolder, exec)
-    await io.mv(extractedBin, execPath)
+    await io.mv(path.join(extractedFolder, exec), execPath)
     core.info(`Installed trunk to ${execPath} 🎉`)
   } catch (error) {
     core.setFailed(error.message)

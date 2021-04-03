@@ -1553,12 +1553,12 @@ function run() {
             core.info(`Downloading trunk from ${url} ...`);
             const downloadArchive = yield tc.downloadTool(url);
             core.info(`Extracting trunk to ${tempFolder} ...`);
-            const extractedBin = yield extractFn(downloadArchive, tempFolder);
+            const extractedFolder = yield tc.extractTar(downloadArchive, tempFolder);
             const execFolder = path.join(os.homedir(), '.cargo', 'bin');
             yield io.mkdirP(execFolder);
             const exec = `trunk${ext}`;
             const execPath = path.join(execFolder, exec);
-            yield io.mv(extractedBin, execPath);
+            yield io.mv(path.join(extractedFolder, exec), execPath);
             core.info(`Installed trunk to ${execPath} 🎉`);
         }
         catch (error) {
