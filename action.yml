@@ -3,6 +3,7 @@ description: 'Install Trunk by downloading the executable (much faster than carg
 author: 'jetli'
 inputs:
   version
+    required: false
     description: 'Optional version of trunk to install (eg. "v0.10.0", "latest")'
     default: 'latest'
 runs:
