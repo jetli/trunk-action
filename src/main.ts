@@ -36,12 +36,12 @@ async function run(): Promise<void> {
 
     let ext = ''
     let arch = ''
-    let arch_ext = '.tar.gz'
+    let archExt = '.tar.gz'
     let extractFn = tc.extractTar
     switch (platform) {
       case 'win32':
         ext = '.exe'
-        arch_ext = '.zip'
+        archExt = '.zip'
         arch = 'x86_64-pc-windows-msvc'
         extractFn = tc.extractZip
         break
@@ -56,11 +56,11 @@ async function run(): Promise<void> {
         return
     }
     const archive = `trunk-${arch}`
-    const url = `https://github.com/thedodd/trunk/releases/download/${version}/${archive}${arch_ext}`
+    const url = `https://github.com/thedodd/trunk/releases/download/${version}/${archive}${archExt}`
     core.info(`Downloading trunk from ${url} ...`)
     const downloadArchive = await tc.downloadTool(url)
     core.info(`Extracting trunk to ${tempFolder} ...`)
-    const extractedFolder = await tc.extractTar(downloadArchive, tempFolder)
+    const extractedFolder = await extractFn(downloadArchive, tempFolder)
     const execFolder = path.join(os.homedir(), '.cargo', 'bin')
     await io.mkdirP(execFolder)
     const exec = `trunk${ext}`
