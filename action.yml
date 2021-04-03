@@ -1,11 +1,13 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'trunk-action'
+description: 'Install Trunk by downloading the executable (much faster than cargo install trunk, seconds vs minutes).'
+author: 'jetli'
 inputs:
-  milliseconds: # change this
-    required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+  version
+    description: 'Optional version of trunk to install (eg. "v0.10.0", "latest")'
+    default: 'latest'
 runs:
   using: 'node12'
   main: 'dist/index.js'
+branding:
+  icon: 'package'
+  color: 'orange'
