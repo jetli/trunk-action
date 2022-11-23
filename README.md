@@ -9,7 +9,7 @@ Install `Trunk` by downloading the executable (much faster than `cargo install t
 ## Usage
 
 ```yaml
-- uses: jetli/trunk-action@v0.1.0
+- uses: jetli/trunk-action@v0.2.0
   with:
     # Optional version of trunk to install(eg. 'v0.8.1', 'latest')
     version: 'latest'
