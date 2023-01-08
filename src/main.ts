@@ -13,7 +13,7 @@ async function findVersionLatest(): Promise<string> {
     'https://api.github.com/repos/thedodd/trunk/releases/latest'
   )
   const body = await response.readBody()
-  return Promise.resolve(JSON.parse(body).tag_name || 'v0.10.0')
+  return Promise.resolve(JSON.parse(body).tag_name || 'v0.16.0')
 }
 
 async function findVersion(): Promise<string> {
