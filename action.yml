@@ -3,7 +3,7 @@ description: 'Install Trunk by downloading the executable (much faster than carg
 author: 'jetli'
 inputs:
   version:
-    description: 'Optional version of trunk to install (eg. "v0.10.0", "latest")'
+    description: 'Optional version of trunk to install (eg. "v0.16.0", "latest")'
     default: 'latest'
 runs:
   using: 'node16'
