@@ -1506,7 +1506,7 @@ function findVersionLatest() {
         core.info('Searching the latest version of trunk ...');
         const response = yield c.get('https://api.github.com/repos/thedodd/trunk/releases/latest');
         const body = yield response.readBody();
-        return Promise.resolve(JSON.parse(body).tag_name || 'v0.10.0');
+        return Promise.resolve(JSON.parse(body).tag_name || 'v0.16.0');
     });
 }
 function findVersion() {
