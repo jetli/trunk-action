@@ -1,6 +1,6 @@
 {
   "name": "typescript-action",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "description": "trunk action to install trunk by downloading the executable",
   "main": "lib/main.js",
