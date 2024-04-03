@@ -7,7 +7,7 @@ import * as os from 'os'
 test('a fixed version v0.10.0', () => {
   process.env['RUNNER_TEMP'] = os.tmpdir()
   process.env['INPUT_VERSION'] = 'v0.10.0'
-  const ip = path.join(__dirname, '..', 'lib', 'main.js')
+  const ip = path.join(__dirname, '..', 'dist', 'index.js')
   const options: cp.ExecSyncOptions = {
     env: process.env
   }
@@ -17,7 +17,7 @@ test('a fixed version v0.10.0', () => {
 test('the latest version', () => {
   process.env['RUNNER_TEMP'] = os.tmpdir()
   process.env['INPUT_VERSION'] = 'latest'
-  const ip = path.join(__dirname, '..', 'lib', 'main.js')
+  const ip = path.join(__dirname, '..', 'dist', 'index.js')
   const options: cp.ExecSyncOptions = {
     env: process.env
   }
