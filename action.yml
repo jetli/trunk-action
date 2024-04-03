@@ -1,12 +1,15 @@
 name: 'trunk-action'
-description: 'Install Trunk by downloading the executable (much faster than cargo install trunk, seconds vs minutes).'
+description:
+  'Install Trunk by downloading the executable (much faster than cargo install
+  trunk, seconds vs minutes).'
 author: 'jetli'
 inputs:
   version:
-    description: 'Optional version of trunk to install (eg. "v0.16.0", "latest")'
+    description:
+      'Optional version of trunk to install (eg. "v0.19.1", "latest")'
     default: 'latest'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
 branding:
   icon: 'package'
