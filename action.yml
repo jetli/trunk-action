@@ -6,7 +6,7 @@ inputs:
     description: 'Optional version of trunk to install (eg. "v0.16.0", "latest")'
     default: 'latest'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
 branding:
   icon: 'package'
