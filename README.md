@@ -4,16 +4,18 @@
 
 # `trunk-action`
 
-Install [`Trunk`](https://github.com/thedodd/trunk) by downloading the executable (much faster than `cargo install trunk`, seconds vs minutes).
+Install [`Trunk`](https://github.com/trunk-rs/trunk) by downloading the
+executable (much faster than `cargo install trunk`, seconds vs minutes).
 
 ## Usage
 
 ```yaml
-- uses: jetli/trunk-action@v0.4.0
+- uses: jetli/trunk-action@v0.5.0
   with:
-    # Optional version of trunk to install(eg. 'v0.16.0', 'latest')
+    # Optional version of trunk to install(eg. 'v0.19.1', 'latest')
     version: 'latest'
 ```
 
 ## Resources
-- https://github.com/thedodd/trunk
+
+- https://github.com/trunk-rs/trunk

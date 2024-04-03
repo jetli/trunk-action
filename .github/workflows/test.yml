@@ -1,4 +1,4 @@
-name: "build-test"
+name: 'build-test'
 on: # rebuild any PRs and main branch changes
   pull_request:
   push:
@@ -10,19 +10,19 @@ jobs:
   build: # make sure build/ci work properly
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - run: |
-        npm install
-        npm run all
+      - uses: actions/checkout@v1
+      - run: |
+          npm install
+          npm run all
   test: # make sure the action works on a clean machine without building
     strategy:
       matrix:
         runs-on: [macos-latest, ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.runs-on }}
     steps:
-    - uses: actions/checkout@v1
-    - uses: ./
-      with: 
-        version: v0.10.0
-    - run: |
-        trunk --version
+      - uses: actions/checkout@v1
+      - uses: ./
+        with:
+          version: v0.10.0
+      - run: |
+          trunk --version

@@ -13,7 +13,7 @@ async function findVersionLatest(): Promise<string> {
     'https://api.github.com/repos/thedodd/trunk/releases/latest'
   )
   const body = await response.readBody()
-  return Promise.resolve(JSON.parse(body).tag_name || 'v0.16.0')
+  return Promise.resolve(JSON.parse(body).tag_name || 'v0.19.1')
 }
 
 async function findVersion(): Promise<string> {
@@ -24,12 +24,16 @@ async function findVersion(): Promise<string> {
   return Promise.resolve(version)
 }
 
-async function run(): Promise<void> {
+export async function run(): Promise<void> {
   const tempFolder = path.join(os.tmpdir(), 'setup-trunk')
   await io.mkdirP(tempFolder)
 
   try {
     const version = await findVersion()
+    if (!version.startsWith('v')) {
+      core.setFailed('Version tag should start with `v`, eg. `v0.19.1`')
+      return
+    }
     core.info(`Installing trunk ${version} ...`)
     const platform = process.env['PLATFORM'] || process.platform
     core.debug(platform)
@@ -68,13 +72,9 @@ async function run(): Promise<void> {
     await io.mv(path.join(extractedFolder, exec), execPath)
     core.info(`Installed trunk to ${execPath} 🎉`)
   } catch (error) {
-    core.setFailed(error.message)
+    // Fail the workflow run if an error occurs
+    if (error instanceof Error) core.setFailed(error.message)
   } finally {
     io.rmRF(tempFolder)
   }
 }
-
-run().then(
-  () => core.info('Done'),
-  err => core.error(err)
-)
