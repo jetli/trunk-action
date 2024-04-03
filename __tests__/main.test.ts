@@ -1,4 +1,4 @@
-/* import * as process from 'process'
+import * as process from 'process'
 import * as cp from 'child_process'
 import * as path from 'path'
 import * as os from 'os'
@@ -23,4 +23,3 @@ test('test runs with the latest version', () => {
   }
   console.log(cp.execSync(`node ${ip}`, options).toString())
 })
- */
