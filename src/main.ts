@@ -69,7 +69,8 @@ export async function run(): Promise<void> {
     await io.mkdirP(execFolder)
     const exec = `trunk${ext}`
     const execPath = path.join(execFolder, exec)
-    await io.mv(path.join(extractedFolder, exec), execPath)
+    await io.cp(path.join(extractedFolder, exec), execPath)
+    await io.rmRF(path.join(extractedFolder, exec))
     core.info(`Installed trunk to ${execPath} 🎉`)
   } catch (error) {
     // Fail the workflow run if an error occurs
