@@ -36,31 +36,44 @@ export async function run(): Promise<void> {
     }
     core.info(`Installing trunk ${version} ...`)
     const platform = process.env['PLATFORM'] || process.platform
+    const arch = process.env['ARCH'] || process.arch
     core.debug(platform)
 
     let ext = ''
-    let arch = ''
-    let archExt = '.tar.gz'
+    let targetArch = ''
+    let targetPlatform = ''
+    let platformExt = '.tar.gz'
     let extractFn = tc.extractTar
+    switch (arch) {
+      case 'x64':
+        targetArch = 'x86_64'
+        break
+      case 'arm64':
+        targetArch = 'aarch64'
+        break
+      default:
+        core.setFailed(`Unsupported architecture: ${arch}`)
+        return
+    }
     switch (platform) {
       case 'win32':
         ext = '.exe'
-        archExt = '.zip'
-        arch = 'x86_64-pc-windows-msvc'
+        platformExt = '.zip'
+        targetPlatform = 'pc-windows-msvc'
         extractFn = tc.extractZip
         break
       case 'darwin':
-        arch = 'x86_64-apple-darwin'
+        targetPlatform = 'apple-darwin'
         break
       case 'linux':
-        arch = 'x86_64-unknown-linux-gnu'
+        targetPlatform = 'unknown-linux-gnu'
         break
       default:
         core.setFailed(`Unsupported platform: ${platform}`)
         return
     }
-    const archive = `trunk-${arch}`
-    const url = `https://github.com/thedodd/trunk/releases/download/${version}/${archive}${archExt}`
+    const archive = `trunk-${targetArch}-${targetPlatform}`
+    const url = `https://github.com/thedodd/trunk/releases/download/${version}/${archive}${platformExt}`
     core.info(`Downloading trunk from ${url} ...`)
     const downloadArchive = await tc.downloadTool(url)
     core.info(`Extracting trunk to ${tempFolder} ...`)
