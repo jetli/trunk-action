@@ -10,9 +10,9 @@ executable (much faster than `cargo install trunk`, seconds vs minutes).
 ## Usage
 
 ```yaml
-- uses: jetli/trunk-action@v0.5.0
+- uses: jetli/trunk-action@v0.5.1
   with:
-    # Optional version of trunk to install(eg. 'v0.19.1', 'latest')
+    # Optional version of trunk to install(eg. 'v0.21.14', 'latest')
     version: 'latest'
 ```
 
