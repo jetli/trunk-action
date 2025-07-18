@@ -10,10 +10,10 @@ const c: client.HttpClient = new client.HttpClient('vsts-node-api')
 async function findVersionLatest(): Promise<string> {
   core.info('Searching the latest version of trunk ...')
   const response = await c.get(
-    'https://api.github.com/repos/thedodd/trunk/releases/latest'
+    'https://api.github.com/repos/trunk-rs/trunk/releases/latest'
   )
   const body = await response.readBody()
-  return Promise.resolve(JSON.parse(body).tag_name || 'v0.19.1')
+  return Promise.resolve(JSON.parse(body).tag_name || 'v0.21.14')
 }
 
 async function findVersion(): Promise<string> {
@@ -73,7 +73,7 @@ export async function run(): Promise<void> {
         return
     }
     const archive = `trunk-${targetArch}-${targetPlatform}`
-    const url = `https://github.com/thedodd/trunk/releases/download/${version}/${archive}${platformExt}`
+    const url = `https://github.com/trunk-rs/trunk/releases/download/${version}/${archive}${platformExt}`
     core.info(`Downloading trunk from ${url} ...`)
     const downloadArchive = await tc.downloadTool(url)
     core.info(`Extracting trunk to ${tempFolder} ...`)

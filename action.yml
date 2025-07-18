@@ -6,7 +6,7 @@ author: 'jetli'
 inputs:
   version:
     description:
-      'Optional version of trunk to install (eg. "v0.19.1", "latest")'
+      'Optional version of trunk to install (eg. "v0.21.14", "latest")'
     default: 'latest'
 runs:
   using: 'node20'

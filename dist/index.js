@@ -32043,9 +32043,9 @@ const client = __importStar(__nccwpck_require__(5538));
 const c = new client.HttpClient('vsts-node-api');
 async function findVersionLatest() {
     core.info('Searching the latest version of trunk ...');
-    const response = await c.get('https://api.github.com/repos/thedodd/trunk/releases/latest');
+    const response = await c.get('https://api.github.com/repos/trunk-rs/trunk/releases/latest');
     const body = await response.readBody();
-    return Promise.resolve(JSON.parse(body).tag_name || 'v0.19.1');
+    return Promise.resolve(JSON.parse(body).tag_name || 'v0.21.14');
 }
 async function findVersion() {
     const version = core.getInput('version');
@@ -32101,7 +32101,7 @@ async function run() {
                 return;
         }
         const archive = `trunk-${targetArch}-${targetPlatform}`;
-        const url = `https://github.com/thedodd/trunk/releases/download/${version}/${archive}${platformExt}`;
+        const url = `https://github.com/trunk-rs/trunk/releases/download/${version}/${archive}${platformExt}`;
         core.info(`Downloading trunk from ${url} ...`);
         const downloadArchive = await tc.downloadTool(url);
         core.info(`Extracting trunk to ${tempFolder} ...`);
@@ -32110,7 +32110,8 @@ async function run() {
         await io.mkdirP(execFolder);
         const exec = `trunk${ext}`;
         const execPath = path.join(execFolder, exec);
-        await io.mv(path.join(extractedFolder, exec), execPath);
+        await io.cp(path.join(extractedFolder, exec), execPath);
+        await io.rmRF(path.join(extractedFolder, exec));
         core.info(`Installed trunk to ${execPath} 🎉`);
     }
     catch (error) {
