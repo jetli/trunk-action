@@ -23,6 +23,6 @@ jobs:
       - uses: actions/checkout@v1
       - uses: ./
         with:
-          version: v0.10.0
+          version: v0.21.14
       - run: |
           trunk --version
